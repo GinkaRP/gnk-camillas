@@ -30,7 +30,7 @@ Citizen.CreateThread(function()
 end)
 
 ----- Menu
-local function AbrirSubMenu(animation)
+local function AbrirSubMenu(animacion)
     CORE.UI.Menu.Open('default', GetCurrentResourceName(), 'menu', {
         title = ('¿Estás seguro?'),
         elements = {
@@ -43,7 +43,7 @@ local function AbrirSubMenu(animation)
                 local camillaID   = Config.Camillas[i]
             local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), camillaID.coordenadas_camilla.x, camillaID.coordenadas_camilla.y, camillaID.coordenadas_camilla.z, true)
             if distance < 1.5 and not tumbado_sentado then
-                animation(camillaID.coordenadas_camilla.x, camillaID.coordenadas_camilla.y, camillaID.coordenadas_camilla.z, camillaID.heading, camillaID)
+                animacion(camillaID.coordenadas_camilla.x, camillaID.coordenadas_camilla.y, camillaID.coordenadas_camilla.z, camillaID.heading, camillaID)
                 CORE.UI.Menu.CloseAll()
             end
         end
@@ -125,15 +125,15 @@ function PulsarH()
     end
 end
 
-function IniciarAnimacion(x, y, z, heading, animation)
+function IniciarAnimacion(x, y, z, heading, animacion)
     SetEntityCoords(PlayerPedId(), x, y, z + 0.3)
-    RequestAnimDict(animation.animDict)
-    while not HasAnimDictLoaded(animation.animDict) do
+    RequestAnimDict(animacion.animDict)
+    while not HasAnimDictLoaded(animacion.animDict) do
         Citizen.Wait(0)
     end
-    TaskPlayAnim(PlayerPedId(), animation.animDict, animation.animName, 8.0, -8.0, -1, 1, 0, false, false, false)
+    TaskPlayAnim(PlayerPedId(), animacion.animDict, animacion.animName, 8.0, -8.0, -1, 1, 0, false, false, false)
 
-    SetEntityHeading(PlayerPedId(), heading + animation.headingOffset)
+    SetEntityHeading(PlayerPedId(), heading + animacion.headingOffset)
 
     tumbado_sentado = true
 
