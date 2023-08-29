@@ -1,4 +1,6 @@
-Script de camillas del hospital con coordenadas, funcional para ESX & QBCore.
+Script básico de camillas del hospital con coordenadas, funcional para ESX & QBCore.
+
+Basic hospital beds script with coords, works with ESX & QBCore.
 
 **Discord:** https://discord.gg/7Pn3nqjUAc
 
