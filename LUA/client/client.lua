@@ -9,7 +9,7 @@ local menu_abierto = false
 
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(13)
+        Citizen.Wait(5)
 
         if not menu_abierto and not tumbado_sentado then
             local playerCoords = GetEntityCoords(PlayerPedId())
