@@ -6,4 +6,4 @@ Discord: https://discord.gg/7Pn3nqjUAc
 
 **Config**:
 
-![config lua](https://github.com/GinkaRP/gnk-camillas/assets/116312031/86cce994-cbe2-43f9-ad67-05b829e517df)
+![config lua](https://github.com/GinkaRP/gnk-camillas/assets/116312031/959a0619-2d8c-4cff-9386-68f93a2e7270)
