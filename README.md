@@ -1,4 +1,4 @@
-![image](https://github.com/GinkaRP/gnk-camillas/assets/116312031/c036df41-2c32-4e98-ab10-311db458c915)🇪🇸 - Script básico de camillas del hospital con coordenadas, funcional para ESX & QBCore.
+🇪🇸 - Script básico de camillas del hospital con coordenadas, funcional para ESX & QBCore.
 
 🇺🇸 - Basic hospital beds script with coords, works with ESX & QBCore.
 
