@@ -1,35 +1,56 @@
+local tumbado_sentado = false
+local menu_abierto = false
+
 if Config.Framework then
     CORE = exports["es_extended"]:getSharedObject()
 else
     CORE = exports["qb-core"]:GetCoreObject()
 end
 
-local tumbado_sentado = false
-local menu_abierto = false
+if Config.OxTarget then
+    for i = 1, #Config.Camillas do
+        exports.ox_target:addBoxZone({
+            coords = vec3(Config.Camillas[i].coordenadas_camilla.x, Config.Camillas[i].coordenadas_camilla.y, Config.Camillas[i].coordenadas_camilla.z -1),
+            size = vec3(3, 2, 1.6),
+            rotation = 50,
+            debug = false,
+            drawSprite = true,
+            options = {
+                {
+                    name = 'camillas',
+                    event = 'gnk-camillas:AbrirMenuCamillas',
+                    icon = 'fa-solid fa-bed',
+                    label = "Interactuar con la camilla",
+                    distance = 1.5,
+                }
+            }
+        })
+    end
+else
+    Citizen.CreateThread(function()
+        while true do
+            Citizen.Wait(5)
 
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(5)
+            if not menu_abierto and not tumbado_sentado then
+                local playerCoords = GetEntityCoords(PlayerPedId())
 
-        if not menu_abierto and not tumbado_sentado then
-            local playerCoords = GetEntityCoords(PlayerPedId())
-            
-            for i = 1, #Config.Camillas do
-                local camillaID = Config.Camillas[i]
-                local distance = GetDistanceBetweenCoords(playerCoords, camillaID.coordenadas_camilla.x, camillaID.coordenadas_camilla.y, camillaID.coordenadas_camilla.z, true)
+                for i = 1, #Config.Camillas do
+                    local camillaID = Config.Camillas[i]
+                    local distance = GetDistanceBetweenCoords(playerCoords, camillaID.coordenadas_camilla.x, camillaID.coordenadas_camilla.y, camillaID.coordenadas_camilla.z, true)
 
-                if distance < 1.5 then
-                    ShowFloatingHelpNotification("Pulsa ~y~E~s~ para interactuar", vector3(camillaID.coordenadas_camilla.x, camillaID.coordenadas_camilla.y, camillaID.coordenadas_camilla.z))
-                    if IsControlJustReleased(0, 38) then
-                        AbrirMenuCamillas()
+                    if distance < 1.5 then
+                            ShowFloatingHelpNotification("Pulsa ~y~E~s~ para interactuar", vector3(camillaID.coordenadas_camilla.x, camillaID.coordenadas_camilla.y, camillaID.coordenadas_camilla.z))
+                        if IsControlJustReleased(0, 38) then
+                            TriggerEvent('gnk-camillas:AbrirMenuCamillas')
+                        end
                     end
                 end
             end
         end
-    end
-end)
+    end)
+end
 
------ Menu
+----- Menú
 local function AbrirSubMenu(animacion)
     CORE.UI.Menu.Open('default', GetCurrentResourceName(), 'menu', {
         title = ('¿Estás seguro?'),
@@ -42,7 +63,7 @@ local function AbrirSubMenu(animacion)
             for i=1, #Config.Camillas do
                 local camillaID   = Config.Camillas[i]
             local distance = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), camillaID.coordenadas_camilla.x, camillaID.coordenadas_camilla.y, camillaID.coordenadas_camilla.z, true)
-            if distance < 1.5 and not tumbado_sentado then
+            if distance < 2.5 and not tumbado_sentado then
                 animacion(camillaID.coordenadas_camilla.x, camillaID.coordenadas_camilla.y, camillaID.coordenadas_camilla.z, camillaID.heading, camillaID)
                 CORE.UI.Menu.CloseAll()
             end
@@ -55,7 +76,7 @@ local function AbrirSubMenu(animacion)
     end)
 end
 
-function AbrirMenuCamillas()
+local function AbrirMenuCamillas()
     CORE.UI.Menu.CloseAll()
 
     if menu_abierto then
@@ -144,3 +165,6 @@ function IniciarAnimacion(x, y, z, heading, animacion)
         end
     end)
 end
+
+RegisterNetEvent('gnk-camillas:AbrirMenuCamillas')
+AddEventHandler('gnk-camillas:AbrirMenuCamillas', AbrirMenuCamillas)
