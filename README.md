@@ -10,4 +10,4 @@
 
 **Config:**
 
-![config lua](https://github.com/GinkaRP/gnk-camillas/assets/116312031/959a0619-2d8c-4cff-9386-68f93a2e7270)
+![Captura de pantalla 2023-09-15 150546](https://github.com/GinkaRP/gnk-camillas/assets/116312031/78aa119e-fdd7-46d6-8713-efda9a268607)
