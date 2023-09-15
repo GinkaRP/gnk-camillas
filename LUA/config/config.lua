@@ -2,10 +2,12 @@ Config = {
 
 	Framework = true, -- ESX = true  //  QBCORE = false
 
+	OxTarget = true, -- Tercer ojo (ALT) - ox_target
+
 	Camillas = {
 		{
 			heading =  140.60,
-			coordenadas_camilla = {x = -1865.86, y = -332.33, z = 50.19},
+			coordenadas_camilla = {x = -1865.86, y = -332.33, z = 50.19}, -- IMPORTANTE: Para poner las coordenadas, primero tendrás que ponerte encima de la camilla para que la animación se ponga exactamente encima de la cama
 		},
 		{
 			heading = 140.60,
@@ -13,11 +15,7 @@ Config = {
 		},
 		{
 			heading = 140.60,
-			coordenadas_camilla = {x = -1868.69, y = -330.15, z = 50.19},
-		},
-		{
-			heading = 140.60,
-			coordenadas_camilla = {x = -1872.25, y = -327.20, z = 50.19},
+			coordenadas_camilla = {x = -1868.69, y = -330.15, z = 50.23},
 		},
 		{
 			heading = 140.60,
